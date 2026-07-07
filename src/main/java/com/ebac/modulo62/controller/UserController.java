@@ -1,38 +1,63 @@
 package com.ebac.modulo62.controller;
 
 import com.ebac.modulo62.dto.User;
+import com.ebac.modulo62.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class UserController {
+    @Autowired
+    UserService userService;
 
     @GetMapping("/usuarios")
     public List<User> getUsers() {
-        return List.of(new User());
+        return userService.getUserList();
     }
 
     @GetMapping("/usuarios/{id}")
-    public User getUserById(@PathVariable long id) {
-        System.out.printf("Id obtenido: %s\n",id);
-        return new User();
+    public ResponseEntity<User> getUserById(@PathVariable Long id) {
+
+        Optional<User> userOptional = userService.getUserById(id);
+        return userOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+
     }
 
     @PostMapping("/usuarios")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        return ResponseEntity.ok(user);
+    public ResponseEntity<User> createUser(@RequestBody User user) throws URISyntaxException {
+        userService.newUser(user);
+
+        return ResponseEntity.created(new URI("http://localhost/usuarios")).build();
     }
 
-    @PutMapping("/usarios/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable long Id, @RequestBody User updatedUser){
-        System.out.printf("Usario con id [%s]: %s\n",Id, updatedUser);
-        return ResponseEntity.ok(updatedUser);
+    @PutMapping("/usuarios/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody User updatedUser){
+        Optional<User> userOptional = userService.getUserById(id);
+        if(userOptional.isPresent()){
+            updatedUser.setIdUser(userOptional.get().getIdUser());
+            userService.updateUser(updatedUser);
+
+            return ResponseEntity.ok(updatedUser);
+
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
-    @DeleteMapping("/usarios/{id}")
-    public ResponseEntity<User> deleteUser(@PathVariable long Id) {
-        return ResponseEntity.noContent().build();
+    @DeleteMapping("/usuarios/{id}")
+    public ResponseEntity<User> deleteUser(@PathVariable long id) {
+        if(userService.getUserById(id).isPresent()) {
+            userService.deleteUser(id);
+            return ResponseEntity.noContent().build();
+
+        } else  {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

@@ -1,0 +1,12 @@
+CREATE TABLE usuarios(
+	id_user INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(100),
+	age INT
+);
+
+--
+docker run --rm --name MySQL -e MYSQL_ROOT_PASSWORD=root -d -p 3306:3306 mysql
+
+docker run --rm --name adminer -d -p 8081:8080 adminer
+
+
