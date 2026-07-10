@@ -30,10 +30,14 @@ public class UserController {
     }
 
     @PostMapping("/usuarios")
-    public ResponseEntity<User> createUser(@RequestBody User user) throws URISyntaxException {
-        userService.newUser(user);
+    public ResponseEntity<User> createUser(@RequestBody User user) throws Exception {
 
-        return ResponseEntity.created(new URI("http://localhost/usuarios")).build();
+        try {
+            userService.newUser(user);
+            return ResponseEntity.created(new URI("http://localhost/usuarios")).build();
+        } catch (Exception e){
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @PutMapping("/usuarios/{id}")
@@ -51,7 +55,7 @@ public class UserController {
     }
 
     @DeleteMapping("/usuarios/{id}")
-    public ResponseEntity<User> deleteUser(@PathVariable long id) {
+    public ResponseEntity<Void> deleteUser(@PathVariable long id) {
         if(userService.getUserById(id).isPresent()) {
             userService.deleteUser(id);
             return ResponseEntity.noContent().build();

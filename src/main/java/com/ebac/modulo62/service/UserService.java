@@ -13,8 +13,11 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public User newUser(User user){
-        return userRepository.save(user);
+    public User newUser(User user) throws Exception {
+        if(user.getAge() >= 18){
+            return userRepository.save(user);
+        }
+        throw new Exception("No se puede crear una cuenta para menores de 18");
     }
 
     public Optional<User> getUserById(Long userId){
