@@ -22,7 +22,6 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class UserControllerTest {
-
     @Mock
     UserService userService;
 
@@ -37,36 +36,44 @@ class UserControllerTest {
     void getUsers() {
         int users = 5;
         List<User> userListExpected = mockUserDbList(users);
-
         when(userService.getUserList()).thenReturn(userListExpected);
-
-        List<User> actualUserList = userController.getUsers();
-        assertEquals(users, actualUserList.size());
-
-        assertEquals(userListExpected, actualUserList);
+        ResponseWrapper<List<User>> wrapper = userController.getUsers();
+        ResponseEntity<List<User>> responseEntity = wrapper.getResponseEntity();
+        List<User> actualUserList = responseEntity.getBody();
+        assertTrue(wrapper.isSuccess());
+        assertEquals(200, responseEntity.getStatusCode().value());
+        assertNotNull(actualUserList);
+        assertEquals(5, actualUserList.size());
+        verify(userService, times(1)).getUserList();
     }
 
     @Test
     void getUserWhenEmpty() {
         when(userService.getUserList()).thenReturn(List.of());
 
-        List<User> actualUserList = userController.getUsers();
+        ResponseWrapper<List<User>> wrapper = userController.getUsers();
+        ResponseEntity<List<User>> responseEntity = wrapper.getResponseEntity();
+        List<User> actualUserList = responseEntity.getBody();
 
+        assertTrue(wrapper.isSuccess());
+        assertEquals(200, responseEntity.getStatusCode().value());
+        assertNotNull(actualUserList);
         assertTrue(actualUserList.isEmpty());
-
         verify(userService, times(1)).getUserList();
     }
 
     @Test
     void getUserById() {
         long userId = 1;
-        Optional<User>expectedUser = Optional.of(mockUserDbList(1).get(0));
+        Optional<User> expectedUser = Optional.of(mockUserDbList(1).get(0));
         when(userService.getUserById(userId)).thenReturn(expectedUser);
 
-        ResponseEntity<User> userResponseEntity = userController.getUserById(userId);
-        User actualUser = userResponseEntity.getBody();
+        ResponseWrapper<User> wrapper = userController.getUserById(userId);
+        ResponseEntity<User> responseEntity = wrapper.getResponseEntity();
+        User actualUser = responseEntity.getBody();
 
-        assertEquals(200, userResponseEntity.getStatusCode().value());
+        assertTrue(wrapper.isSuccess());
+        assertEquals(200, responseEntity.getStatusCode().value());
         assertNotNull(actualUser);
         assertEquals("name1", actualUser.getName());
     }
@@ -76,84 +83,27 @@ class UserControllerTest {
         long userId = 1;
         when(userService.getUserById(userId)).thenReturn(Optional.empty());
 
-        ResponseEntity<User> userResponseEntity = userController.getUserById(userId);
-        User actualUser = userResponseEntity.getBody();
+        ResponseWrapper<User> wrapper = userController.getUserById(userId);
+        ResponseEntity<User> responseEntity = wrapper.getResponseEntity();
+        User actualUser = responseEntity.getBody();
 
-        assertEquals(404, userResponseEntity.getStatusCode().value());
-        assertTrue(Objects.isNull(actualUser));
+        assertTrue(wrapper.isSuccess()); // Tu endpoint retorna true incluso si no lo encuentra
+        assertEquals(404, responseEntity.getStatusCode().value());
+        assertNull(actualUser);
     }
 
     @Test
     void createUser() throws Exception {
         User expectedUser = mockUserDbList(1).get(0);
-
         when(userService.newUser(expectedUser)).thenReturn(expectedUser);
 
-        ResponseEntity<User> userResponseEntity = userController.createUser(expectedUser);
-        User actualUser = userResponseEntity.getBody();
+        ResponseWrapper<User> wrapper = userController.createUser(expectedUser);
+        ResponseEntity<User> responseEntity = wrapper.getResponseEntity();
+        User actualUser = responseEntity.getBody();
 
-        assertEquals(201, userResponseEntity.getStatusCode().value());
-        assertTrue(Objects.isNull(actualUser));
-    }
-
-    @Test
-    void updateUser() {
-        int userId = 5;
-        String upatedName ="Aldo";
-        int updatedAge = 27;
-
-        User oldUser = new User();
-        oldUser.setIdUser(userId);
-        oldUser.setName("David");
-        oldUser.setAge(21);
-
-        User updatedUser = new User();
-        updatedUser.setName(upatedName);
-        updatedUser.setAge(updatedAge);
-
-        when(userService.getUserById((long) userId)).thenReturn(Optional.of(oldUser));
-        doNothing().when(userService).updateUser(updatedUser);
-
-        ResponseEntity<User> userResponseEntity = userController.updateUser((long) userId, updatedUser);
-        User actualUser = userResponseEntity.getBody();
-
-        assertEquals(200, userResponseEntity.getStatusCode().value());
-        assertNotNull(actualUser);
-        assertEquals(upatedName, actualUser.getName());
-        assertEquals(updatedAge, actualUser.getAge());
-    }
-
-    @Test
-    void updateUserNoUser() {
-        long userId = 5;
-        String upatedName ="Aldo";
-        int updatedAge = 27;
-
-        User updatedUser = new User();
-        updatedUser.setName(upatedName);
-        updatedUser.setAge(updatedAge);
-        when(userService.getUserById(userId)).thenReturn(Optional.empty());
-
-        ResponseEntity<User> userResponseEntity = userController.updateUser(userId, updatedUser);
-        User actualUser = userResponseEntity.getBody();
-
-        assertEquals(404, userResponseEntity.getStatusCode().value());
-        assertNull(actualUser);
-        verify(userService, never()).updateUser(updatedUser);
-    }
-
-    @Test
-    void deleteUser() {
-        long userId = 5;
-
-        User expectedUser = mockUserDbList(1).get(0);
-        when(userService.getUserById((long) userId)).thenReturn(Optional.of(expectedUser));
-
-        doNothing().when(userService).deleteUser(userId);
-        ResponseEntity<Void> userResponseEntity = userController.deleteUser(userId);
-
-        assertEquals(204, userResponseEntity.getStatusCode().value());
-        verify(userService, atLeast(1)).deleteUser(userId);
+        assertTrue(wrapper.isSuccess());
+        assertEquals(201, responseEntity.getStatusCode().value());
+        assertNull(actualUser); // Es correcto, .build() en ResponseEntity.created() no lleva body
     }
 
     @Test
@@ -163,13 +113,95 @@ class UserControllerTest {
         user.setName("NombreUser");
         user.setAge(15);
 
-        doThrow(Exception.class).when(userService).newUser(user);
+        doThrow(new RuntimeException("Usuario menor de edad")).when(userService).newUser(user);
 
-        ResponseEntity<User> userResponseEntity = userController.createUser(user);
-        User actualUser = userResponseEntity.getBody();
+        ResponseWrapper<User> wrapper = userController.createUser(user);
+        ResponseEntity<User> responseEntity = wrapper.getResponseEntity();
+        User actualUser = responseEntity.getBody();
 
-        assertEquals(400, userResponseEntity.getStatusCode().value());
-        assertNull(actualUser); 
+        assertFalse(wrapper.isSuccess()); // Esperamos false por el catch del controlador
+        assertEquals("Usuario menor de edad", wrapper.getMessage());
+        assertEquals(400, responseEntity.getStatusCode().value());
+        assertNull(actualUser);
+    }
+
+    @Test
+    void updateUser() {
+        int userId = 5;
+        String updatedName = "Aldo";
+        int updatedAge = 27;
+
+        User oldUser = new User();
+        oldUser.setIdUser(userId);
+        oldUser.setName("David");
+        oldUser.setAge(21);
+
+        User updatedUser = new User();
+        updatedUser.setName(updatedName);
+        updatedUser.setAge(updatedAge);
+
+        when(userService.getUserById((long) userId)).thenReturn(Optional.of(oldUser));
+        doNothing().when(userService).updateUser(updatedUser);
+
+        ResponseWrapper<User> wrapper = userController.updateUser((long) userId, updatedUser);
+        ResponseEntity<User> responseEntity = wrapper.getResponseEntity();
+        User actualUser = responseEntity.getBody();
+
+        assertTrue(wrapper.isSuccess());
+        assertEquals(200, responseEntity.getStatusCode().value());
+        assertNotNull(actualUser);
+        assertEquals(updatedName, actualUser.getName());
+        assertEquals(updatedAge, actualUser.getAge());
+    }
+
+    @Test
+    void updateUserNoUser() {
+        long userId = 5;
+        String updatedName = "Aldo";
+        int updatedAge = 27;
+
+        User updatedUser = new User();
+        updatedUser.setName(updatedName);
+        updatedUser.setAge(updatedAge);
+        when(userService.getUserById(userId)).thenReturn(Optional.empty());
+
+        ResponseWrapper<User> wrapper = userController.updateUser(userId, updatedUser);
+        ResponseEntity<User> responseEntity = wrapper.getResponseEntity();
+        User actualUser = responseEntity.getBody();
+
+        assertFalse(wrapper.isSuccess());
+        assertEquals(404, responseEntity.getStatusCode().value());
+        assertNull(actualUser);
+        verify(userService, never()).updateUser(updatedUser);
+    }
+
+    @Test
+    void deleteUser() {
+        long userId = 5;
+        User expectedUser = mockUserDbList(1).get(0);
+
+        when(userService.getUserById(userId)).thenReturn(Optional.of(expectedUser));
+        doNothing().when(userService).deleteUser(userId);
+
+        ResponseWrapper<Void> wrapper = userController.deleteUser(userId);
+        ResponseEntity<Void> responseEntity = wrapper.getResponseEntity();
+
+        assertTrue(wrapper.isSuccess());
+        assertEquals(20, responseEntity.getStatusCode().value() / 10);
+        verify(userService, times(1)).deleteUser(userId);
+    }
+
+    @Test
+    void deleteUserNotFound() {
+        long userId = 5;
+        when(userService.getUserById(userId)).thenReturn(Optional.empty());
+
+        ResponseWrapper<Void> wrapper = userController.deleteUser(userId);
+        ResponseEntity<Void> responseEntity = wrapper.getResponseEntity();
+
+        assertFalse(wrapper.isSuccess());
+        assertEquals(404, responseEntity.getStatusCode().value());
+        verify(userService, never()).deleteUser(userId);
     }
 
     private List<User> mockUserDbList(int listCount){

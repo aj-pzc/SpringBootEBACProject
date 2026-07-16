@@ -4,6 +4,17 @@ CREATE TABLE usuarios(
 	age INT
 );
 
+
+CREATE TABLE telefonos(
+	id_phone INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	id_user INT,
+	PHONE_TYPE VARCHAR(100),
+	lada INT,
+	number VARCHAR(100)
+);
+
+DROP TABLE
+
 --
 docker run --rm --name MySQL -e MYSQL_ROOT_PASSWORD=root -d -p 3306:3306 mysql
 
