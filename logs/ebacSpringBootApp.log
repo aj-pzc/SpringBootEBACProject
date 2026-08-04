@@ -1,5 +1,79 @@
-2026-07-16 13:51:06.464 [main] INFO  com.ebac.modulo62.Modulo62App - Starting Modulo62App using Java 21.0.11 with PID 30216 (C:\Users\matyd\Escritorio\Aldo\JavaProyects\SpringBootEBAC\build\classes\java\main started by ajpzc in C:\Users\matyd\Escritorio\Aldo\JavaProyects\SpringBootEBAC)
-2026-07-16 13:51:06.468 [main] INFO  com.ebac.modulo62.Modulo62App - The following 1 profile is active: "prod"
-2026-07-16 13:51:12.468 [main] INFO  com.ebac.modulo62.Modulo62App - Started Modulo62App in 6.594 seconds (process running for 7.487)
-2026-07-16 13:51:37.237 [http-nio-8080-exec-3] INFO  c.e.m.controller.UserController - Obteniendo Usuarios
-2026-07-16 13:52:19.191 [http-nio-8080-exec-7] INFO  c.e.m.controller.UserController - Obteniendo Usuarios
+2026-08-04 09:33:27.164 [main] INFO  com.ebac.modulo62.Modulo62App - Starting Modulo62App using Java 21.0.11 with PID 27780 (C:\Users\matyd\Escritorio\Aldo\JavaProyects\SpringBootEBAC\build\classes\java\main started by ajpzc in C:\Users\matyd\Escritorio\Aldo\JavaProyects\SpringBootEBAC)
+2026-08-04 09:33:27.169 [main] INFO  com.ebac.modulo62.Modulo62App - The following 1 profile is active: "dev"
+2026-08-04 09:33:30.689 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2026-08-04 09:33:46.596 [main] INFO  com.ebac.modulo62.Modulo62App - Starting Modulo62App using Java 21.0.11 with PID 25044 (C:\Users\matyd\Escritorio\Aldo\JavaProyects\SpringBootEBAC\build\classes\java\main started by ajpzc in C:\Users\matyd\Escritorio\Aldo\JavaProyects\SpringBootEBAC)
+2026-08-04 09:33:46.598 [main] INFO  com.ebac.modulo62.Modulo62App - The following 1 profile is active: "dev"
+2026-08-04 09:33:51.198 [main] INFO  com.ebac.modulo62.Modulo62App - Started Modulo62App in 5.164 seconds (process running for 5.939)
+2026-08-04 10:08:56.622 [main] INFO  com.ebac.modulo62.Modulo62App - Starting Modulo62App using Java 21.0.11 with PID 1376 (C:\Users\matyd\Escritorio\Aldo\JavaProyects\SpringBootEBAC\build\classes\java\main started by ajpzc in C:\Users\matyd\Escritorio\Aldo\JavaProyects\SpringBootEBAC)
+2026-08-04 10:08:56.623 [main] INFO  com.ebac.modulo62.Modulo62App - The following 1 profile is active: "dev"
+2026-08-04 10:09:01.798 [main] INFO  com.ebac.modulo62.Modulo62App - Started Modulo62App in 5.664 seconds (process running for 6.403)
+2026-08-04 10:09:32.496 [http-nio-8080-exec-1] INFO  c.e.m.controller.UserController - Buscando el usuario por username: usuarioPrueba
+2026-08-04 10:10:32.931 [http-nio-8080-exec-8] INFO  c.e.m.controller.UserController - Buscando el usuario por username: userPrueba
+2026-08-04 10:11:41.375 [main] INFO  com.ebac.modulo62.Modulo62App - Starting Modulo62App using Java 21.0.11 with PID 12568 (C:\Users\matyd\Escritorio\Aldo\JavaProyects\SpringBootEBAC\build\classes\java\main started by ajpzc in C:\Users\matyd\Escritorio\Aldo\JavaProyects\SpringBootEBAC)
+2026-08-04 10:11:41.377 [main] INFO  com.ebac.modulo62.Modulo62App - The following 1 profile is active: "dev"
+2026-08-04 10:11:46.029 [main] INFO  com.ebac.modulo62.Modulo62App - Started Modulo62App in 5.17 seconds (process running for 5.952)
+2026-08-04 10:11:49.002 [http-nio-8080-exec-1] INFO  c.e.m.controller.UserController - Buscando el usuario por username: ajpzc
+2026-08-04 10:13:04.595 [http-nio-8080-exec-7] INFO  c.e.m.controller.UserController - Buscando el usuario por username: ajpzc
+2026-08-04 10:15:11.841 [http-nio-8080-exec-1] INFO  c.e.m.controller.UserController - Buscando el usuario por username: ajpzc
+2026-08-04 10:24:22.118 [http-nio-8080-exec-9] INFO  c.e.m.controller.UserController - Buscando el usuario por username: ajpzc
+2026-08-04 10:24:37.236 [http-nio-8080-exec-10] INFO  c.e.m.controller.UserController - Buscando el usuario por username: ajpzc
+2026-08-04 10:24:37.260 [http-nio-8080-exec-3] INFO  c.e.m.controller.UserController - Obteniendo Usuarios
+2026-08-04 10:28:11.935 [http-nio-8080-exec-6] INFO  c.e.m.controller.UserController - Buscando el usuario por username: ajpzc
+2026-08-04 10:28:21.720 [http-nio-8080-exec-7] INFO  c.e.m.controller.UserController - Buscando el usuario por username: ajpzc
+2026-08-04 10:28:21.742 [http-nio-8080-exec-2] INFO  c.e.m.controller.UserController - Obteniendo Usuarios
+2026-08-04 10:28:33.143 [http-nio-8080-exec-8] INFO  c.e.m.controller.UserController - Obteniendo Usuarios
+2026-08-04 10:33:29.493 [http-nio-8080-exec-7] INFO  c.e.m.controller.UserController - Buscando el usuario por username: ajpzc
+2026-08-04 10:33:29.618 [http-nio-8080-exec-3] INFO  c.e.m.controller.UserController - Obteniendo Usuarios
+2026-08-04 10:36:21.432 [http-nio-8080-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Violación de una restricción de Integridad Referencial: "CONSTRAINT_D4: PUBLIC.TELEFONOS FOREIGN KEY(ID_USER) REFERENCES PUBLIC.USUARIOS(ID_USER) (1)"
+Referential integrity constraint violation: "CONSTRAINT_D4: PUBLIC.TELEFONOS FOREIGN KEY(ID_USER) REFERENCES PUBLIC.USUARIOS(ID_USER) (1)"; SQL statement:
+insert into telefonos (lada,number,phone_type,id_user,id_phone) values (?,?,?,?,default) [23506-232]
+2026-08-04 11:15:14.481 [http-nio-8080-exec-10] INFO  c.e.m.controller.UserController - Buscando el usuario por username: ajpzc
+2026-08-04 11:15:22.311 [http-nio-8080-exec-2] INFO  c.e.m.controller.UserController - Buscando el usuario por username: ajpzc
+2026-08-04 11:15:22.330 [http-nio-8080-exec-4] INFO  c.e.m.controller.UserController - Obteniendo Usuarios
+2026-08-04 11:15:28.578 [http-nio-8080-exec-3] INFO  c.e.m.controller.UserController - Buscando el usuario por username: ajpzc
+2026-08-04 11:15:28.601 [http-nio-8080-exec-7] INFO  c.e.m.controller.UserController - Obteniendo Usuarios
+2026-08-04 11:18:55.344 [http-nio-8080-exec-6] INFO  c.e.m.controller.UserController - Buscando el usuario por username: ajpzc
+2026-08-04 11:18:55.465 [http-nio-8080-exec-1] INFO  c.e.m.controller.UserController - Obteniendo Usuarios
+2026-08-04 11:22:18.694 [http-nio-8080-exec-8] INFO  c.e.m.controller.UserController - Buscando el usuario por username: ajpzc
+2026-08-04 11:22:18.717 [http-nio-8080-exec-10] INFO  c.e.m.controller.UserController - Obteniendo Usuarios
+2026-08-04 11:28:22.627 [http-nio-8080-exec-4] INFO  c.e.m.controller.UserController - Obteniendo Usuarios
+2026-08-04 11:29:35.796 [http-nio-8080-exec-7] INFO  c.e.m.controller.UserController - Buscando el usuario por username: ajpzc
+2026-08-04 11:29:35.916 [http-nio-8080-exec-5] INFO  c.e.m.controller.UserController - Obteniendo Usuarios
+2026-08-04 11:29:38.830 [http-nio-8080-exec-6] INFO  c.e.m.controller.UserController - Obteniendo el usuario 3
+2026-08-04 11:31:21.833 [http-nio-8080-exec-9] INFO  c.e.m.controller.UserController - Buscando el usuario por username: ajpzc
+2026-08-04 11:31:21.954 [http-nio-8080-exec-8] INFO  c.e.m.controller.UserController - Obteniendo Usuarios
+2026-08-04 11:31:24.310 [http-nio-8080-exec-10] INFO  c.e.m.controller.UserController - Obteniendo el usuario 3
+2026-08-04 11:32:57.051 [http-nio-8080-exec-4] INFO  c.e.m.controller.UserController - Buscando el usuario por username: ajpzc
+2026-08-04 11:33:02.514 [http-nio-8080-exec-3] INFO  c.e.m.controller.UserController - Buscando el usuario por username: ajpzc
+2026-08-04 11:33:02.540 [http-nio-8080-exec-7] INFO  c.e.m.controller.UserController - Obteniendo Usuarios
+2026-08-04 11:36:46.046 [http-nio-8080-exec-6] INFO  c.e.m.controller.UserController - Buscando el usuario por username: ajpzc
+2026-08-04 11:36:46.164 [http-nio-8080-exec-1] INFO  c.e.m.controller.UserController - Obteniendo Usuarios
+2026-08-04 11:36:54.270 [http-nio-8080-exec-9] INFO  c.e.m.controller.UserController - Obteniendo el usuario 3
+2026-08-04 12:44:04.520 [http-nio-8080-exec-10] INFO  c.e.m.controller.UserController - Buscando el usuario por username: ajpzc
+2026-08-04 12:44:04.655 [http-nio-8080-exec-2] INFO  c.e.m.controller.UserController - Obteniendo Usuarios
+2026-08-04 12:44:07.390 [http-nio-8080-exec-4] INFO  c.e.m.controller.UserController - Obteniendo el usuario 3
+2026-08-04 12:45:10.678 [http-nio-8080-exec-7] INFO  c.e.m.controller.UserController - Obteniendo Usuarios
+2026-08-04 12:49:45.973 [http-nio-8080-exec-6] INFO  c.e.m.controller.UserController - Buscando el usuario por username: ajpzc
+2026-08-04 12:49:46.095 [http-nio-8080-exec-1] INFO  c.e.m.controller.UserController - Obteniendo Usuarios
+2026-08-04 12:49:49.200 [http-nio-8080-exec-9] INFO  c.e.m.controller.UserController - Obteniendo el usuario 2
+2026-08-04 12:50:32.415 [http-nio-8080-exec-10] INFO  c.e.m.controller.UserController - Buscando el usuario por username: ajpzc
+2026-08-04 12:50:32.452 [http-nio-8080-exec-2] INFO  c.e.m.controller.UserController - Buscando el usuario por username: ajpzc
+2026-08-04 12:50:32.539 [http-nio-8080-exec-4] INFO  c.e.m.controller.UserController - Obteniendo Usuarios
+2026-08-04 12:51:14.647 [http-nio-8080-exec-7] INFO  c.e.m.controller.UserController - Obteniendo Usuarios
+2026-08-04 12:51:17.537 [http-nio-8080-exec-5] INFO  c.e.m.controller.UserController - Obteniendo el usuario 5
+2026-08-04 13:14:45.282 [http-nio-8080-exec-6] INFO  c.e.m.controller.UserController - Obteniendo Usuarios
+2026-08-04 13:15:23.879 [http-nio-8080-exec-10] INFO  c.e.m.controller.UserController - Obteniendo Usuarios
+2026-08-04 13:15:27.877 [http-nio-8080-exec-9] INFO  c.e.m.controller.UserController - Obteniendo el usuario 3

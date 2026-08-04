@@ -17,6 +17,8 @@ public class User {
 
     private String name;
     private int age;
+    private String username;
+    private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonManagedReference

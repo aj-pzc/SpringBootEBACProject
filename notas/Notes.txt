@@ -1,17 +1,21 @@
 CREATE TABLE usuarios(
 	id_user INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	name VARCHAR(100),
-	age INT
+	age INT,
+	username VARCHAR(100) UNIQUE,
+	password VARCHAR(255)
 );
 
 
-CREATE TABLE telefonos(
-	id_phone INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	id_user INT,
-	PHONE_TYPE VARCHAR(100),
-	lada INT,
-	number VARCHAR(100)
+CREATE TABLE telefonos (
+    id_phone INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_user INT,
+    phone_type VARCHAR(100),
+    lada INT,
+    number VARCHAR(100),
+    FOREIGN KEY (id_user) REFERENCES usuarios(id_user) ON DELETE CASCADE
 );
+
 
 DROP TABLE
 
@@ -19,5 +23,7 @@ DROP TABLE
 docker run --rm --name MySQL -e MYSQL_ROOT_PASSWORD=root -d -p 3306:3306 mysql
 
 docker run --rm --name adminer -d -p 8081:8080 adminer
+
+Server: 172.17.0.2
 
 

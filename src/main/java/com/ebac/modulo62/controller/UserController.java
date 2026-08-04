@@ -81,4 +81,19 @@ public class UserController {
             return new ResponseWrapper<>(false, "Usuario no encontrado", responseEntity);
         }
     }
+
+    @GetMapping("/usuarios/username/{username}")
+    public ResponseWrapper<User> getUserByUsername(@PathVariable String username) {
+        log.info("Buscando el usuario por username: {}", username);
+
+        Optional<User> userOptional = userService.getUserByUsername(username);
+
+        if (userOptional.isPresent()) {
+            ResponseEntity<User> responseEntity = ResponseEntity.ok(userOptional.get());
+            return new ResponseWrapper<>(true, "Usuario encontrado", responseEntity);
+        } else {
+            ResponseEntity<User> responseEntity = ResponseEntity.notFound().build();
+            return new ResponseWrapper<>(false, "Usuario no encontrado", responseEntity);
+        }
+    }
 }

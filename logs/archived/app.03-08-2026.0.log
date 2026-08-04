@@ -1,0 +1,38 @@
+2026-08-03 19:50:47.820 [main] INFO  com.ebac.modulo62.Modulo62App - Starting Modulo62App using Java 21.0.11 with PID 21792 (C:\Users\matyd\Escritorio\Aldo\JavaProyects\SpringBootEBAC\build\classes\java\main started by ajpzc in C:\Users\matyd\Escritorio\Aldo\JavaProyects\SpringBootEBAC)
+2026-08-03 19:50:47.821 [main] INFO  com.ebac.modulo62.Modulo62App - The following 1 profile is active: "dev"
+2026-08-03 19:50:51.740 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2026-08-03 19:52:10.074 [main] INFO  com.ebac.modulo62.Modulo62App - Starting Modulo62App using Java 21.0.11 with PID 9760 (C:\Users\matyd\Escritorio\Aldo\JavaProyects\SpringBootEBAC\build\classes\java\main started by ajpzc in C:\Users\matyd\Escritorio\Aldo\JavaProyects\SpringBootEBAC)
+2026-08-03 19:52:10.075 [main] INFO  com.ebac.modulo62.Modulo62App - The following 1 profile is active: "dev"
+2026-08-03 19:52:12.965 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2026-08-03 19:52:36.305 [main] INFO  com.ebac.modulo62.Modulo62App - Starting Modulo62App using Java 21.0.11 with PID 13088 (C:\Users\matyd\Escritorio\Aldo\JavaProyects\SpringBootEBAC\build\classes\java\main started by ajpzc in C:\Users\matyd\Escritorio\Aldo\JavaProyects\SpringBootEBAC)
+2026-08-03 19:52:36.307 [main] INFO  com.ebac.modulo62.Modulo62App - The following 1 profile is active: "dev"
+2026-08-03 19:52:38.914 [main] INFO  com.ebac.modulo62.Modulo62App - Started Modulo62App in 2.887 seconds (process running for 3.315)
+2026-08-03 20:04:32.438 [main] INFO  com.ebac.modulo62.Modulo62App - Starting Modulo62App using Java 21.0.11 with PID 14272 (C:\Users\matyd\Escritorio\Aldo\JavaProyects\SpringBootEBAC\build\classes\java\main started by ajpzc in C:\Users\matyd\Escritorio\Aldo\JavaProyects\SpringBootEBAC)
+2026-08-03 20:04:32.440 [main] INFO  com.ebac.modulo62.Modulo62App - The following 1 profile is active: "dev"
+2026-08-03 20:04:35.662 [main] INFO  com.ebac.modulo62.Modulo62App - Started Modulo62App in 3.52 seconds (process running for 4.048)
